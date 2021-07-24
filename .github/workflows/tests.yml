@@ -17,8 +17,8 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x, 15.x, 16.x]
-                os: [ubuntu-latest, windows-latest, macOS-latest]
+                node-version: [16.x]
+                os: [ubuntu-latest]
 
         steps:
             - uses: actions/checkout@v2
@@ -39,20 +39,14 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-yarn-
 
-            - name: Install Typescript Globally
-              run: npm i -g typescript
-
             - name: Install Server Dependencies
               if: steps.cache.outputs.cache-hit != 'true'
               run: cd server && yarn install
 
-            - name: Compile Server Typescript
-              run: cd server && yarn build
+            - name: Run Server Tests
+              run: cd server && yarn test --coverage
 
-
-            # - name: Install Client Dependencies
-            #   if: steps.cache.outputs.cache-hit != 'true'
-            #   run: cd client && yarn install
-
-            # - name: Build React Project
-            #   run: cd client && yarn build
+            - uses: codecov/codecov-action@v2
+              with:
+                  directory: server
+                  token: ${{ secrets.CODECOV_TOKEN }}
