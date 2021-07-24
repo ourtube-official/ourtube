@@ -4,6 +4,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 import logger from "./utils/logger";
+import { TESTING } from "./utils/constants";
 
 const app = express();
 app.get("/", (_, res) => res.send("Hello World!"));
@@ -16,11 +17,14 @@ mongoose.connect(
     },
     (err) => {
         if (err) logger.error(err);
-        logger.info("Successfully connected to MongoDB!");
+        if (!TESTING) logger.info("Successfully connected to MongoDB!");
     }
 );
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () =>
-    logger.info(`Server successfully listening on port ${PORT}`)
-);
+const server = app.listen(PORT, () => {
+    if (!TESTING) logger.info(`Server successfully listening on port ${PORT}`);
+});
+
+// Tests
+export default server;

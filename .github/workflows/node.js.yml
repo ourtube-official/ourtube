@@ -46,6 +46,9 @@ jobs:
             - name: Compile Server Typescript
               run: cd server && yarn build
 
+            - name: Run Server Tests
+              run: cd server && yarn test
+
             # - name: Install Client Dependencies
             #   if: steps.cache.outputs.cache-hit != 'true'
             #   run: cd client && yarn install
