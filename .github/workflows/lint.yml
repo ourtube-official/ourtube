@@ -1,0 +1,59 @@
+name: Lint server
+
+on:
+    push:
+        paths: ["**.js", "**.ts", "server/**"]
+
+        branches: [master]
+    pull_request_target:
+        branches: [master]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    checks: write
+
+jobs:
+    run-linters:
+        name: Lint
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Check out repository (push or workflow_dispatch)
+              if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+              uses: actions/checkout@v2
+
+            - name: Check out repository (pull_request_target)
+              if: ${{ github.event_name == 'pull_request_target' }}
+              uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 16
+
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+
+            - uses: actions/cache@v2
+              id: yarn-cache
+              with:
+                  path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-yarn-
+
+            - name: Install function dependencies
+              if: steps.yarn-cache.outputs.cache-hit != true
+              run: cd server && yarn install
+
+            - name: Lint server
+              uses: wearerequired/lint-action@v1
+              with:
+                  eslint: true
+                  eslint_dir: server
+                  eslint_extensions: ts
+                  neutral_check_on_warning: true
