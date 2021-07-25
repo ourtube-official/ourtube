@@ -17,13 +17,13 @@ mongoose.connect(
     },
     (err) => {
         if (err) logger.error(err);
-        if (!TESTING) logger.info("Successfully connected to MongoDB!");
+        logger.info("Successfully connected to MongoDB!");
     }
 );
 
 const PORT = process.env.PORT || 4000;
 const server = app.listen(PORT, () => {
-    if (!TESTING) logger.info(`Server successfully listening on port ${PORT}`);
+    logger.info(`Server successfully listening on port ${PORT}`);
 });
 
 // Tests
