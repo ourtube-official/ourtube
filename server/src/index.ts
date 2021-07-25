@@ -4,7 +4,6 @@ import express from "express";
 import mongoose from "mongoose";
 
 import logger from "./utils/logger";
-import { TESTING } from "./utils/constants";
 
 const app = express();
 app.get("/", (_, res) => res.send("Hello World!"));
