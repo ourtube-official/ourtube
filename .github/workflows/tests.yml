@@ -1,9 +1,11 @@
 name: Tests
 
 on:
-    push:
-        paths: ["*.js", "*.ts", "server/**", "client/**"]
+    workflow_run:
+        workflows: ["Node.js CI"]
         branches: [master]
+        types:
+            - completed
     pull_request:
         branches: [master]
     workflow_dispatch:
@@ -12,7 +14,7 @@ env:
     MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
 jobs:
-    build:
+    test:
         runs-on: ${{ matrix.os }}
 
         strategy:
