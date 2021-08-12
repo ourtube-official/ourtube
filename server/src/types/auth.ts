@@ -8,8 +8,8 @@ export interface User {
     updatedAt: Date;
 }
 
-declare module "express" {
-    export interface Request {
+declare module "fastify" {
+    export interface FastifyRequest {
         user: User;
     }
 }

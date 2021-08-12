@@ -1,7 +1,7 @@
-import { FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 
 const videoController = {
-    uploadVideo: async (_req: FastifyRequest, res: any) => {
+    uploadVideo: async (_req: FastifyRequest, res: FastifyReply) => {
         // if (!req.file?.mimetype.includes("video"))
         //     return res.status(400).json("Invalid file type");
 
@@ -18,7 +18,7 @@ const videoController = {
         // );
 
         // return;
-        return res.json({ msg: "TODO" });
+        return res.send({ msg: "TODO" });
     }
 };
 
