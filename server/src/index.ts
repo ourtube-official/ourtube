@@ -1,12 +1,36 @@
 import "dotenv/config";
 
-import express from "express";
+import Fastify from "fastify";
 import mongoose from "mongoose";
 
 import logger from "./utils/logger";
+import { upload } from "./utils/constants";
 
-const app = express();
-app.get("/", (_, res) => res.send("Hello World!"));
+import videoRoutes from "./routes/videoRoutes";
+import middie from "middie";
+
+const app = Fastify({
+    logger: {
+        prettyPrint: true,
+        serializers: {
+            req(request) {
+                return {
+                    method: request.method,
+                    url: request.url
+                };
+            }
+        }
+    }
+});
+
+app.register(middie);
+
+app.get("/", (_, reply) => {
+    reply.send({ msg: "Hello World!" });
+});
+
+// Middleware
+app.register(upload.contentParser);
 
 mongoose.connect(
     process.env.MONGODB_URI,
@@ -20,10 +44,10 @@ mongoose.connect(
     }
 );
 
+app.register(videoRoutes, { prefix: "/api" });
+
 const PORT = process.env.PORT || 4000;
-const server = app.listen(PORT, () => {
-    logger.info(`Server successfully listening on port ${PORT}`);
-});
+app.listen(PORT);
 
 // Tests
-export default server;
+export default app;

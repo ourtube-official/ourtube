@@ -1,4 +1,3 @@
-import request from "supertest";
 import mongoose from "mongoose";
 
 import app from "../../src/index";
@@ -10,13 +9,14 @@ beforeAll(() => {
 describe("Hello World Route", () => {
     // prettier-ignore
     it("should return \"Hello World!\"", async () => {
-        const res = await request(app).get("/");
+        const res = await app.inject({ method: "GET", url: "/" });
+
         expect(res.statusCode).toBe(200);
-        expect(res.text).toBe("Hello World!");
+        expect(res.json().msg).toBe("Hello World!");
     });
 });
 
 afterAll(async () => {
     await mongoose.disconnect();
-    app.close();
+    await app.close();
 });
