@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
     push:
-        paths: ["*.js", "*.ts", "server/**", "client/**"]
+        paths: ["*.js", "*.ts"]
         branches: [master]
     pull_request:
         branches: [master]
@@ -48,7 +48,6 @@ jobs:
 
             - name: Compile Server Typescript
               run: cd server && yarn build
-
 
             # - name: Install Client Dependencies
             #   if: steps.cache.outputs.cache-hit != 'true'
