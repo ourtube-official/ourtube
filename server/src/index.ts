@@ -1,4 +1,4 @@
-import "dotenv-safe/config";
+import "dotenv/config";
 
 import Fastify from "fastify";
 import mongoose from "mongoose";
