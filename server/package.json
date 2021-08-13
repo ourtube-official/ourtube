@@ -8,7 +8,7 @@
         "watch": "tsc -w",
         "dev": "nodemon dist/src/index.js",
         "start": "node dist/src/index.js",
-        "test": "jest"
+        "test": "jest --runInBand"
     },
     "keywords": [],
     "author": "Beatzoid",
@@ -31,16 +31,19 @@
         "eslint-plugin-import": "^2.23.4",
         "jest": "^27.0.6",
         "nodemon": "^2.0.12",
+        "prettier": "^2.3.2",
         "supertest": "^6.1.4",
         "typescript": "^4.3.2"
     },
     "dependencies": {
+        "argon2": "^0.28.2",
         "cloudinary": "^1.26.2",
-        "dotenv": "^10.0.0",
+        "dotenv-safe": "^8.2.0",
         "fastify": "^3.20.1",
+        "fastify-cookie": "^5.3.1",
+        "fastify-helmet": "^5.3.2",
         "fastify-multer": "^2.0.2",
         "jsonwebtoken": "^8.5.1",
-        "middie": "^5.3.0",
         "mongoose": "^5.13.3",
         "multer": "^1.4.2",
         "pino-pretty": "^5.1.3",

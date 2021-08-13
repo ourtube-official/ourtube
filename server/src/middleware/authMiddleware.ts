@@ -11,7 +11,7 @@ const authMiddleware = async (
     next: DoneFuncWithErrOrRes
 ) => {
     try {
-        const token = req.headers["Authorization"] as string;
+        const token = req.headers["authorization"]?.split("Bearer")[1];
 
         if (!token)
             return res.status(400).send({ msg: "Invalid authentication" });
