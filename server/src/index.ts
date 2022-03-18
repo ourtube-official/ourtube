@@ -35,11 +35,6 @@ mongoose.connect(
     process.env.NODE_ENV === "test"
         ? process.env.MONGODB_URI_TESTING
         : process.env.MONGODB_URI,
-    {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useCreateIndex: true
-    },
     (err) => {
         if (err) logger.error(err);
         logger.info("Successfully connected to MongoDB!");

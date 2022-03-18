@@ -56,3 +56,11 @@ jobs:
                   eslint_dir: server
                   eslint_extensions: ts
                   neutral_check_on_warning: true
+
+            # - name: Lint Client
+            #   uses: wearerequired/lint-action@v1
+            #   with:
+            #       eslint: true
+            #       eslint_dir: client
+            #       eslint_extensions: ts
+            #       neutral_check_on_warning: true
