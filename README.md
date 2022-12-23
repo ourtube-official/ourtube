@@ -4,7 +4,7 @@ Ourtube is a streaming service acting as a replacement for Youtube
 
 # Why?
 
-Youtube is known for demonizing channels for only swearing while allowing insanely inappropriate ads, such as [this]() and [this](). Ourtube is a website that aims to fix that problem with one simple solution: remove the ads (along with a bunch of other QOL changes). That way, Youtubers will focus on their community more than the revenue, and users won't be plagued by ads on almost every video and page. **This will never completely replace Youtube.** Some Youtubers depend on the revenue from content creation to survive, and in those cases then Youtube is just right for them. But for the one's that care about their community more than the money, Ourtube is the perfect choice.
+Youtube went from a simple video sharing website to a money-hungry website. They put ads on videos from Youtubers that don't even qualify for monetization, meaning all the ad revenue goes straight to Youtube. They also demonetize Youtubers for the smallest things, yet they allow insanely inappropriate ads to be shown on the website. Ourtube aims to fix these issues (and a lot more) with one big change: removing the ads. That way, Youtubers will focus on their community more than the revenue, and users won't be plagued by ads on almost every video and page. **This will never completely replace Youtube.** Some Youtubers depend on the revenue from content creation to survive, and in those cases then Youtube is just right for them. But for the one's that care about their community more than the money, Ourtube is the perfect choice.
 
 # Contributing
 
